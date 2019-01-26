@@ -1,0 +1,39 @@
+#main h1{
+  margin: 1em 0 2em 0;
+}
+
+.addBtn{
+  margin:15px !important;
+}
+
+.icon{
+  cursor: pointer;
+  padding:0 3px;
+  transition: 100ms ease-out;
+  backface-visibility: hidden;
+  color:#666;
+}
+
+.icon:hover{
+  color:#000;
+  /* transform:scale(1.2); */
+}
+
+.ezi{
+  animation: ezi 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  backface-visibility: hidden;
+}
+
+@keyframes ezi{
+  0%{
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
