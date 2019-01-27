@@ -8,7 +8,7 @@ const fs = require('fs');
 
 // const compiler = webpack(config);
 const app = express();
-const port = process.env.PORT || 8080;
+// const port = process.env.PORT || 8080;
 const DATA_FILE = path.join(__dirname,'data.json');
 
 // const webpackDevMiddleware = require('webpack-dev-middleware')(
@@ -115,6 +115,6 @@ app.delete('/api/timer',(req,res)=>{
   });
 });
 
-app.listen(port,()=>{
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(process.env.PORT || 8080,()=>{
+  console.log(`Server running at http://localhost:${process.env.PORT || 8080}`);
 })
