@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
             {
                 // test: /\.scss$/,
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+                use: ["style-loader",MiniCssExtractPlugin.loader, "css-loader"]
             },
             {
                 test: /\.(ttf|eot|woff|woff2)$/,
@@ -43,7 +44,7 @@ module.exports = {
             }
         ]
     },
-    watch: true,
+    // watch: true,
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
@@ -66,6 +67,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'style.css',
         }),
         //   new LiveReloadPlugin()
         new webpack.HotModuleReplacementPlugin()

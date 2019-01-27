@@ -2,25 +2,25 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const webpack = require('webpack');
-const config = require('../webpack.config');
+// const webpack = require('webpack');
+// const config = require('../webpack.config');
 // require('webpack-hot-middleware/client?reload=true');
 
-const compiler = webpack(config);
+// const compiler = webpack(config);
 const app = express();
 const port = process.env.PORT || 8080;
 const DATA_FILE = path.join(__dirname,'data.json');
 
-const webpackDevMiddleware = require('webpack-dev-middleware')(
-  compiler,config.devServer
-);
+// const webpackDevMiddleware = require('webpack-dev-middleware')(
+//   compiler,config.devServer
+// );
 
-const webpackHotMiddleware = require('webpack-hot-middleware')(
-  compiler
-);
+// const webpackHotMiddleware = require('webpack-hot-middleware')(
+//   compiler
+// );
                                                     // Order matters ;)
-app.use(webpackDevMiddleware);                              // 1
-app.use(webpackHotMiddleware);                              // 2
+// app.use(webpackDevMiddleware);                              // 1
+// app.use(webpackHotMiddleware);                              // 2
 
 app.use(express.static(path.join(__dirname,'..','dist')));  // 3
 app.use(bodyParser.json());
