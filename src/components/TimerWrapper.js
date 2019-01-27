@@ -16,31 +16,32 @@ class TimerWrapper extends Component{
   componentDidMount(){
     axios.get('/api/timers').then(({data})=>{
         this.setState({timers:data});
-    });
+    }).catch(e => console.log(e));
   }
 
   handleButtonClick = (ButtonState,id) => {
     let prevStateBtn = "";
+    const now = Date.now();
     this.setState((prevState)=>{
       const currentState = prevState.timers.map((timer)=>{
         if(!ButtonState){
           prevStateBtn = 'start';
-          axios.post('/api/timer/start',{id:id, start:Date.now()})
-            .then(res => console.log(res))
+          axios.post('/api/timer/start',{id:id, start:now})
+            .then(res => console.log(res.data.success))
             .catch(e => console.log(e + `from ${prevStateBtn}`));
-          // console.log("STOP");
+          console.log("START pressed from local");
           if(id === timer.id){
-            timer.runningSince = Date.now();
+            timer.runningSince = now;
           }
         }
         else{
           prevStateBtn = 'stop';
-          // console.log("START");
-          axios.post('/api/timer/stop',{id:id, stop:Date.now()})
-            .then(res => console.log(res))
+          console.log("STOP Pressed from local");
+          axios.post('/api/timer/stop',{id:id, stop:now})
+            .then(res => console.log(res.data.success))
             .catch(e => console.log(e + `from ${prevStateBtn}`));
           if(id === timer.id){
-            const totalElapsed = timer.elapsed + Date.now() - timer.runningSince;
+            const totalElapsed = timer.elapsed + now - timer.runningSince;
             timer.elapsed = totalElapsed;
             timer.runningSince = null;
           }
@@ -52,15 +53,15 @@ class TimerWrapper extends Component{
     })
 
     // axios.post(`/api/timer/${prevStateBtn}`,{id:id})
-    //     .then(res => console.log(res))
+    //     .then(res => console.log(res.data.success))
     //     .catch(e => console.log(e + `from ${prevStateBtn}`));
     // if(!ButtonState){
       // axios.post('/api/timer/start',{id:id, start:Date.now()})
-      //   .then(res => console.log(res))
+      //   .then(res => console.log(res.data.success))
       //   .catch(e => console.log(e + `from ${prevStateBtn}`));
     // }else{
       // axios.post('/api/timer/stop',{id:id, stop:Date.now()})
-      //   .then(res => console.log(res))
+      //   .then(res => console.log(res.data.success))
       //   .catch(e => console.log(e + `from ${prevStateBtn}`));
     // }
   }
@@ -75,7 +76,7 @@ class TimerWrapper extends Component{
     })
 
     axios.post('/api/timer',{timer:t})
-      .then(res=>console.log(res))
+      .then(res=>console.log(res.data.success))
       .catch(e => console.log(e));
   }
 
@@ -88,7 +89,7 @@ class TimerWrapper extends Component{
     });
 
     axios.delete('/api/timer',{data:{id:id}}).then(res => 
-      console.log(res)
+      console.log(res.data.success)
     ).catch(e => console.log(e));
   }
 
@@ -123,7 +124,7 @@ class TimerWrapper extends Component{
 
     axios.put('/api/timer',{timer:{id,title,project}})
       .then(res => {
-        console.log(res);
+        console.log(res.data.success);
       }).catch(e=>console.log(e));
   }
 

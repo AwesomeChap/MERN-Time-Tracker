@@ -44,26 +44,32 @@ app.post('/api/timer',(req,res)=>{
   fs.readFile(DATA_FILE,(err,data)=>{
     timers = JSON.parse(data);
     timers.push(timer);
-    fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2));
+    fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2),()=>{
+      res.json({success : "timer created"})
+    });
   })
 })
 
-app.post('/api/timer/start',(req,res)=>{
+app.post('/api/timer/start', (req, res) => {
   const {id,start} = req.body;
   console.log('start : ' + id);
-  fs.readFile(DATA_FILE,(err,data)=>{
-    if(data){
+  fs.readFile(DATA_FILE, (err, data) => {
+    if (data) {
       const timers = JSON.parse(data);
       // console.log(data);
       timers.forEach(t => {
-        if(t.id === id){
+        if (t.id === id) {
           t.runningSince = start;
         }
       })
-  
-      fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2));
+
+      fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 2), () => {
+        res.json({
+          success: "timer started"
+        });
+      });
     }
-  });  
+  });
 });
 
 app.post('/api/timer/stop',(req,res)=>{
@@ -79,9 +85,11 @@ app.post('/api/timer/stop',(req,res)=>{
         }
       })
   
-      fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2));
-    }
-  });  
+      fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2),()=>{
+        res.json({success : "timer stopped"});
+    });
+  }
+});  
 });
 
 app.put('/api/timer',(req,res)=>{
@@ -97,9 +105,11 @@ app.put('/api/timer',(req,res)=>{
         }
       })
 
-      fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2));
-    }
-  })
+      fs.writeFile(DATA_FILE,JSON.stringify(timers,null,2),()=>{
+        res.json({success : "timer updated"});
+    })
+  }
+});
 });
 
 app.delete('/api/timer',(req,res)=>{
@@ -109,10 +119,10 @@ app.delete('/api/timer',(req,res)=>{
   fs.readFile(DATA_FILE, (err,data)=>{
     timers = JSON.parse(data);
     timers = timers.filter(t => t.id !== id);
-    fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 2), () => {
-      res.json({});
-    });
+    fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 2),()=>{
+      res.json({success : "timer deleted with id : "+id});
   });
+});
 });
 
 app.listen(process.env.PORT || 8080,()=>{
