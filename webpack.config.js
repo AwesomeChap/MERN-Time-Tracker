@@ -6,7 +6,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: "production",
-    entry: ['./src/app.js','webpack-hot-middleware/client?reload=true'],
+    entry: [
+        './src/app.js',
+        // 'webpack-hot-middleware/client?reload=true'
+    ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -16,13 +19,16 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    options:{
+                        sourceMap :true
+                    }
                 }
             },
             {
                 // test: /\.scss$/,
                 test: /\.css$/,
-                use: ["style-loader",MiniCssExtractPlugin.loader, "css-loader"]
+                use: ["style-loader",MiniCssExtractPlugin.loader, "css-loader"],
             },
             {
                 test: /\.(ttf|eot|woff|woff2)$/,
@@ -48,22 +54,22 @@ module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
-    devServer: {
-        // port: 3030,
-        // open: true,
-        contentbase:'dist',
-        overlay:true,
-        hot:true,
-        // stats:{
-        //     color:true
-        // }
-        // proxy: {
-        //     '/api': {
-        //         target: 'https://localhost:8080',
-        //         secure: false
-        //     }
-        // }
-    },
+    // devServer: {
+    //     // port: 3030,
+    //     // open: true,
+    //     contentbase:'dist',
+    //     overlay:true,
+    //     hot:true,
+    //     // stats:{
+    //     //     color:true
+    //     // }
+    //     // proxy: {
+    //     //     '/api': {
+    //     //         target: 'https://localhost:8080',
+    //     //         secure: false
+    //     //     }
+    //     // }
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
@@ -72,6 +78,6 @@ module.exports = {
             filename: 'style.css',
         }),
         //   new LiveReloadPlugin()
-        new webpack.HotModuleReplacementPlugin()
+        // new webpack.HotModuleReplacementPlugin()
     ]
 };
