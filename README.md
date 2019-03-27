@@ -3,7 +3,7 @@ Time tracking app is perfect app showing complete CRUD operations and which lets
 Project is live at https://mern-time-tracker.herokuapp.com/
 
 <p>
-  <img src="./src/images/capture.PNG"/>
+  <img src="./src/images/Capture.PNG"/>
 </p>
 
 ## Available Scripts
