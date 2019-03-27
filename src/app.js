@@ -5,6 +5,7 @@ import './css/styles.css';
 // import './css/animations.css';
 import './css/semantic/dist/semantic.min.css';
 import Anim from './playground/animation2';
+import Home from './components/home';
 
 class App extends Component {
   constructor(props){
@@ -12,13 +13,13 @@ class App extends Component {
   }
   render(){
     return(
-      <Fragment>
+      <Home>
         <div id="main" className="main ui">
-            <h1 className="ui centered dividing header">Timers</h1>
+            <h1 className="ui centered custom-h1">Timers</h1>
           <TimerWrapper/>
         </div>
         {/* <Anim/> */}
-      </Fragment>
+      </Home>
     );
   }
 }

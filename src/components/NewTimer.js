@@ -25,7 +25,7 @@ class NewTimer extends Component {
     })
   }
 
-  handleSubmit = () => { 
+  handleSubmit = () => {
     const {title,project} = this.state;
 
     //edit
@@ -99,5 +99,6 @@ class NewTimer extends Component {
     );
   }
 }
+
 
 export default NewTimer;

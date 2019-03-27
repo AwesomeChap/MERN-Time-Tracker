@@ -1,3 +1,3 @@
-# Time-Tracker
+# MERN-Time-Tracker
 
 live url : https://mern-time-tracker.herokuapp.com/

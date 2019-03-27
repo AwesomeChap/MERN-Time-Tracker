@@ -1,5 +1,5 @@
 #main h1{
-  margin: 1em 0 2em 0;
+  /* margin: 1em 0 2em 0; */
 }
 
 .addBtn{
@@ -34,6 +34,33 @@
     transform: scale(1);
   }
 }
+
+
+
+
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-h1{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 10vh;
+  width: 100vw;
+  margin-bottom: 50px;
+  color: white;
+  font-size: 32px;
+  background-image: linear-gradient(rgb(52, 147, 255),rgb(0, 97, 207));
+  border-radius: 0 0 50% 50%;
+}
+
+
 
 
 
