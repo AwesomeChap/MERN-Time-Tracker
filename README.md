@@ -1,4 +1,4 @@
-# MERN_TIME_TRACKER
+# REACT_TIME_TRACKER
 Time tracking app is perfect app showing complete CRUD operations and which lets you track time depending Title and project. (which you can change in source if you want different parameters).
 Project is live at https://mern-time-tracker.herokuapp.com/
 
